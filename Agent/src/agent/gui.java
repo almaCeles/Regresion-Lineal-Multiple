@@ -28,7 +28,8 @@ public class gui extends JFrame {
     private agent myAgent;
     private JTextField xValueField;
     private JTextField xValueField2;
-    
+    private JTextField valorGradiente;
+     private JTextField pasoA;
     gui(agent a){
         super(a.getLocalName());
         
@@ -40,9 +41,9 @@ public class gui extends JFrame {
         xValueField = new JTextField(15);
         p.add(xValueField);
 
-        p.add(new JLabel("Ingresa Valor :")); //VALOR 2
-        xValueField2 = new JTextField(15); //valor 2
-        p.add(xValueField2); //valor 2
+        p.add(new JLabel("Ingresa Valor :")); 
+        xValueField2 = new JTextField(15); 
+        p.add(xValueField2); 
 
         getContentPane().add(p, BorderLayout.CENTER);
 
@@ -66,15 +67,25 @@ public class gui extends JFrame {
 	    getContentPane().add(p, BorderLayout.SOUTH);
            
             
-            JButton Button = new JButton("Calcular Gradient Descent ");
+     
+        
+        p.add(new JLabel("Ingresa Valor para calcular gradiente srl:")); 
+        valorGradiente= new JTextField(15); 
+        p.add(valorGradiente); 
+        
+        p.add(new JLabel("Ingresa Valor del paso:")); 
+        pasoA = new JTextField(15); //paso
+        p.add(pasoA); 
+        
+             JButton Button = new JButton("Calcular Gradient Descent ");
         Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 try {
-                    String xValue2 = xValueField2.getText().trim();
-                    String xValue= xValueField.getText().trim();
-                    myAgent.predecir2(Double.parseDouble(xValue), Double.parseDouble(xValue2)); 
-                    xValueField.setText("");
-                    xValueField2.setText("");
+                    String valorGradient = valorGradiente.getText().trim();
+                    String paso= pasoA.getText().trim();
+                    myAgent.predecir2(Double.parseDouble(paso), Double.parseDouble(valorGradient)); 
+                    valorGradiente.setText("");
+                    pasoA.setText("");
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(gui.this, "valor invalido"+e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -85,7 +96,6 @@ public class gui extends JFrame {
 	    p.add(Button);
 	    getContentPane().add(p, BorderLayout.SOUTH);
              setResizable(false);
-        
     }
     public void showGui() {
 		pack();
