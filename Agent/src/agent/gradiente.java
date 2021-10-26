@@ -25,7 +25,7 @@ public class gradiente {
         double internoYsumax[]=new double[2];
         for (int i = 0; i < datos.length; i++) {
            internoYsumax[0]+=(datos[i][0]-(b0+b1*datos[i][1]));
-           internoYsumax[1]+= datos[i][1];
+           internoYsumax[1]+= datos[i][1]*(datos[i][0]-(b0+b1*datos[i][1]));
         }      
         return internoYsumax;
     }
@@ -33,20 +33,20 @@ public class gradiente {
     public  void calcularBs(){
         
         double interno=caculrInternos()[0] ;
-        double sumaX= caculrInternos()[0];
+        double sumaX= caculrInternos()[1];
         double b[]=new double[2];
               
         b0= (-2/datos.length)*interno;
-        b1= (-2/datos.length)*(sumaX*interno);
+        b1= (-2/datos.length)*sumaX;
       
        
     }
     public double error(){
         double interno=caculrInternos()[0] ;
         double sumaX= caculrInternos()[1];
-        double primera=(1/datos.length);
-        double error = Math.pow(interno,2)*1/datos.length;  //(interno * interno)Math.pow(interno,2)
-        System.out.println("el error es " + error);
+       
+        double error = (interno * interno)*1/datos.length;  //(interno * interno)Math.pow(interno,2)
+        System.out.println("el error es " + error );
         while(error >  0.5){
         
             interno=caculrInternos()[0] ;
@@ -62,7 +62,7 @@ public class gradiente {
         double interno=caculrInternos()[0] ;
         double sumaX= caculrInternos()[1];
         b0= b0 - (a*interno);
-        b1= b1 - (a*(sumaX*interno));
+        b1= b1 - (a*(sumaX));
     }
     
     public double predecir( double dato){

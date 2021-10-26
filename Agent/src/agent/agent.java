@@ -66,21 +66,20 @@ public class agent  extends Agent {
          boolean finished = false;
             public void action() {
                 double[][] dato= new double[][]{
-				{651,23},
-				{762,26},
-				{856,30},
-				{1063,34},
-				{1190,43},
-				{1298,48},
-				{1421,52},
-				{1440,57},
-				{1518,58},
+				{3,1},
+				{6,2},
+				{9,3},
+				{12,4},
+				{15,5},
+				{18,6},
+				{21,7},
+				{24,8},
+				{27,9},
                                 
 				};
                   
                   
                gradiente g= new gradiente(dato,paso);
-                
                g.error();
                 System.out.println("el valor predecido es "+ g.predecir(gradiente));
                finished = true;
