@@ -12,13 +12,11 @@ package agent;
 public class gradiente {
     double b0=0, b1=0, a=0.003;
     double datos[][];
-    public gradiente(double datos[][],double  paso){
+    public gradiente(double datos[][]){
         this.datos=datos;
-        this.a=paso;
+        
     }
-    public void  yo() {
-        System.out.println("8754");
-    }
+  
    
     
     public double [] caculrInternos(){
@@ -34,10 +32,10 @@ public class gradiente {
         
         double interno=caculrInternos()[0] ;
         double sumaX= caculrInternos()[1];
-        double b[]=new double[2];
+     
               
-        b0= (-2/datos.length)*interno;
-        b1= (-2/datos.length)*sumaX;
+        b0= (-2.0/datos.length)*interno;
+        b1= (-2.0/datos.length)*sumaX;
       
        
     }
@@ -45,24 +43,23 @@ public class gradiente {
         double interno=caculrInternos()[0] ;
         double sumaX= caculrInternos()[1];
        
-        double error = (interno * interno)*1/datos.length;  //(interno * interno)Math.pow(interno,2)
-        System.out.println("el error es " + error );
-        while(error >  0.5){
-        
-            interno=caculrInternos()[0] ;
+        double error = (1.0/datos.length)*(Math.pow(interno,2)) ;  //(interno * interno)Math.pow(interno,2)
+        System.out.println("el error es " +error);
+        for (int i = 0; i < 170000 ; i++) {
+             
             caluclarNewBs();
-            error = (1/datos.length)*(Math.pow(interno,2));
+            error = (1.0/datos.length)*(Math.pow(interno,2));
         }
         System.out.println("el error es " + error);
-        System.out.println("las betas son b0" +b0+" b1; "+b1 );
+        System.out.println("las betas son b0: " +b0+" b1: "+b1 );
         return error;
         
     }
     public void caluclarNewBs(){
         double interno=caculrInternos()[0] ;
         double sumaX= caculrInternos()[1];
-        b0= b0 - (a*interno);
-        b1= b1 - (a*(sumaX));
+        b0= b0 - (a*((-2.0/datos.length)*interno));
+        b1= b1 - (a*((-2.0/datos.length)*sumaX));
     }
     
     public double predecir( double dato){

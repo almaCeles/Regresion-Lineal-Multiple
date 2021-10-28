@@ -60,33 +60,19 @@ public class agent  extends Agent {
         });
     }
     
-    public void predecir2( double paso, double gradiente){
+    public void predecir2(  double gradiente){
          
         addBehaviour(new SimpleBehaviour () {
          boolean finished = false;
             public void action() {
-                double[][] dato= new double[][]{
-				{3,1},
-				{6,2},
-				{9,3},
-				{12,4},
-				{15,5},
-				{18,6},
-				{21,7},
-				{24,8},
-				{27,9},
-                                
-				};
+                double[][] dato= new  double[][]{{2,1},{4,2},{6,3},{8,4},{10,5},{12,6},{14,7},{16,8},{18,9},{20,10}};
                   
                   
-               gradiente g= new gradiente(dato,paso);
+               gradiente g= new gradiente(dato);
                g.error();
                 System.out.println("el valor predecido es "+ g.predecir(gradiente));
                finished = true;
-               /*double [] fin= m.mlr(datos);
-               predicciones p=new predicciones();
-               System.out.println("Y : " + p.GradientDescent(0.5,n1,n2)); 
-                finished = true;*/
+              
             }         
 
             @Override

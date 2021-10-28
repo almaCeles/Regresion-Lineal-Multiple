@@ -73,17 +73,15 @@ public class gui extends JFrame {
         valorGradiente= new JTextField(15); 
         p.add(valorGradiente); 
         
-        p.add(new JLabel("Ingresa Valor del paso:")); 
-        pasoA = new JTextField(15); //paso
-        p.add(pasoA); 
+        
         
              JButton Button = new JButton("Calcular Gradient Descent ");
         Button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 try {
                     String valorGradient = valorGradiente.getText().trim();
-                    String paso= pasoA.getText().trim();
-                    myAgent.predecir2(Double.parseDouble(paso), Double.parseDouble(valorGradient)); 
+                    
+                    myAgent.predecir2( Double.parseDouble(valorGradient)); 
                     valorGradiente.setText("");
                     pasoA.setText("");
 
